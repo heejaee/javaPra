@@ -15,7 +15,7 @@ class Account{
         return balance;
     }
 
-    public synchronized void withdraw(int money)
+    public void withdraw(int money)
     {
         if(balance >= money)
         {
@@ -32,7 +32,7 @@ class Account{
 class RunnableEx implements Runnable{
 
     Account acc = new Account();
-    int money = 300;
+    int money = 200;
 
     @Override
     public void run() {
