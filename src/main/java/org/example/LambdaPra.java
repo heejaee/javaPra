@@ -2,7 +2,7 @@ package org.example;
 
 public class LambdaPra {
 
-    // 함수형 인터페이스 -한개의 추상서드를 가진 인터페이스
+    // 함수형 인터페이스 -한개의 추상메서드를 가진 인터페이스
     @FunctionalInterface
     public interface Sports {
         void run(int a,int b);
@@ -15,7 +15,7 @@ public class LambdaPra {
 
     // 함수형 인터페이스를 리턴하는 경우
     public static Sports la(){
-        return (a,b)-> System.out.println("a /b = "+ a/b);
+        return (a,b)-> System.out.println("a/b = "+ a/b);
     }
 
     public static void main(String[] args) {
