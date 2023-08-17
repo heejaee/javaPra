@@ -48,7 +48,4 @@ public class FuncPra<T> {
         }
     }
 
-
-
-
 }

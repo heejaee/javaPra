@@ -7,6 +7,7 @@ public class IntToInteger {
     public static void main(String[] args) {
         int[] temp = {1, 2, 3, 4};
         Integer[] tmp = Arrays.stream(temp).boxed().toArray(x -> new Integer[x]);
+        Integer[] tmp2=Arrays.stream(temp).boxed().toArray(Integer[]::new);
         for (Integer integer : tmp) {
             System.out.println("integer = " + integer);
         }
