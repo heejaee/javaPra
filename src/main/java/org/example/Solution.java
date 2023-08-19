@@ -1,11 +1,33 @@
 package org.example;
 
+import java.lang.annotation.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@interface TestInfo{
+    String[] teatTools();
+    int count() default 1;
+}
+
+@TestInfo(teatTools = {"1","2"}, count =3)
+class NewClass{
+    public static void main(String[] args) {
+        Class<NewClass> cls = NewClass.class;
+        TestInfo anno = cls.getAnnotation(TestInfo.class);
+        System.out.println("anno.count() = " + anno.count());
+        for (String s : anno.teatTools()) {
+            System.out.println("s = " + s);
+        }
+
+        Annotation[] annoArr = cls.getAnnotations();
+        for(Annotation a: annoArr) System.out.println("a = " + a);
+    }
+}
+
+
 class Solution {
-
-
 
     public static int[] dailyTemperatures(int[] temperatures) {
         Stack<Integer> stack = new Stack<>();
@@ -55,6 +77,6 @@ class Solution {
     }
 
     public static void main(String[] args) {
-        solution(2,10, new int[]{7,4,5,6});
+
     }
 }

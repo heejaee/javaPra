@@ -13,15 +13,8 @@ public class FuncPra<T> {
         Function<Integer,Integer> f = a ->  a*10;
         Predicate<Integer> p = a -> a%2==0;
 
-        List<Integer> list = new ArrayList<>();
-        plus(s,list);
 
-        List<Integer> newlist = doSomething(f,list);
-        for (Integer integer : newlist) {
-            System.out.println("newlist = " + integer);
-        }
 
-        printEvenNum(p,c,list);
     }
 
     private static <T> List<T> doSomething(Function<T, T> f, List<T> list) {

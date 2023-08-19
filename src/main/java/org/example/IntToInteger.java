@@ -1,6 +1,9 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 public class IntToInteger {
 
@@ -19,4 +22,13 @@ public class IntToInteger {
         System.out.println("integer == i = " + (integer == i));
 
     }
+
+//    public static void main(String[] args) {
+//        List<Integer> ints = new ArrayList<>();
+//        add(ints);
+//    }
+//
+//    private static void add(List<? super Integer> ints){
+//        ints.add(3); // 외부에서 받은 List<Integer>에 Double을 추가하는 모순 발생
+//    }
 }

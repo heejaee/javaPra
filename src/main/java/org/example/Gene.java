@@ -1,7 +1,6 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.List;
 
 class Fruit{ public String toString(){return "Fruit";}}
 class Apple extends Fruit{public String toString(){return "Apple";}}
@@ -14,9 +13,9 @@ class Juice{
 }
 
 class Juicer{
-    static <T extends Fruit> Juice makeJuice(FruitBox<T> box){
+    static Juice makeJuice(FruitBox<? extends Fruit> box){
         String tmp="";
-        for (T fruit : box.getList()) {
+        for (Fruit fruit : box.getList()) {
             tmp += fruit+ " ";
         }
         return new Juice(tmp);
@@ -29,7 +28,8 @@ public class Gene {
         FruitBox<Fruit> fruitBox = new FruitBox<Fruit>();
         FruitBox<Grape> grapeBox = new FruitBox<Grape>();
 
-        FruitBox<? extends Fruit> appleBox = new FruitBox<Apple>();
+
+        //FruitBox<? extends Fruit> appleBox = new FruitBox<Apple>();
         //appleBox.add(new Apple());
 
         fruitBox.add(new Fruit());
