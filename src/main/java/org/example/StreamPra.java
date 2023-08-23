@@ -16,13 +16,17 @@ public class StreamPra {
         Stream<int[]> stream = Stream.of(new int[]{2, 3, 5});
         IntStream intStream = Arrays.stream(arr);
 
-        String[] sarr = {"a b c d e f g h i j k"};
-        Stream<String> str = Arrays.stream(sarr);
-        str.flatMap(line -> Stream.of(line.split(" ")))
-                .forEach(System.out::println);
+//        String[] sarr = {"a b c d e f g h i j k"};
+//        Stream<String> str = Arrays.stream(sarr);
+//        str.flatMap(line -> Stream.of(line.split(" ")))
+//                .forEach(System.out::println);
 //        str.sorted(String.CASE_INSENSITIVE_ORDER)
 //                .forEach(System.out::println);
-
+        Integer[] in = {1,2,3,4};
+        int[] ints = Arrays.stream(in).mapToInt(x -> x).toArray();
+        for (int anInt : ints) {
+            System.out.println("anInt = " + anInt);
+        }
 
 
 //        IntStream intStream = new Random().ints(5,10);
