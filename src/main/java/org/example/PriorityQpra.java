@@ -26,6 +26,7 @@ public class PriorityQpra {
         int[][] times ={{2,1,1},{2,3,1},{3,4,1}};
         graph = new ArrayList[n+1];
 
+
         for(int i =0; i<=n; i++){
             graph[i] = new ArrayList<>();
         }
@@ -37,46 +38,41 @@ public class PriorityQpra {
             graph[u].add(new Node(v,w));
         }
         int start = 2;
-        System.out.println(Dijkstra(n,start));
+
 
     }
 
-    private static int Dijkstra(int n, int start) {
+    private static int Dijkstra(ArrayList<Node>[] graph, int n, int start) {
         boolean[] check = new boolean[n+1];
-        int[] dist = new int[n+1];
+        int[] result = new int[n+1];
         int INF = Integer.MAX_VALUE;
+        Arrays.fill(result,INF);
+        result[0] = 0;
+        result[start] =0;
+        PriorityQueue<Node> pq = new PriorityQueue<>((x,y)-> Integer.compare(x.cost, y.cost));
 
-        Arrays.fill(dist,INF);
-        dist[start]=0;
-
-        PriorityQueue<Node> pq = new PriorityQueue<>();
         pq.offer(new Node(start,0));
+        while(!pq.isEmpty()){
+            int cur = pq.poll().index;
+            if(check[cur]) continue;
+            check[cur] = true;
 
-        while (!pq.isEmpty()) {
-            int now = pq.poll().index;
 
-            if(check[now]) continue;
-            check[now] = true;
-
-            for(Node next: graph[now]){
-                if(dist[next.index]> dist[now]+next.cost){
-                    dist[next.index] = dist[now] + next.cost;
+            for(Node node: graph[cur]){
+                if(result[node.index]> node.cost+result[cur]){
+                    result[node.index]= node.cost+result[cur];
                 }
-
-                pq.offer(new Node(next.index, dist[next.index]));
+                pq.offer(new Node(node.index, result[node.index]));
             }
         }
 
-        for (int i : dist) {
-            System.out.println("i = " + i);
+        int m=0;
+        for(int x: result){
+            if(x == INF) return -1;
+            m  = Math.max(m,x);
         }
-        int m = 0;
-        for(int x: dist){
-            if (x==INF) return -1;
-            m = Math.max(m,x);
-        }
-        System.out.println("m = " + m);
         return m;
+
         //최소거리 출력
 //        for(int i : dist) {
 //            if(i == INF) System.out.print(0 + " ");

@@ -1,41 +1,36 @@
 package org.example;
 
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class SetAddArray {
 
-    static int result;
-    public static int uniquePaths(int m, int n) {
+    public static long solution(int n, int[] times) {
+        Arrays.sort(times);
+        int start =0;
+        int target = n* times[times.length-1];
+        int result = 0;
+        while(start <=target){
+            int mid = (start +target)/2;
+            int cnt=0;
+            for(int x: times){
+                cnt += mid/x;}
 
-        Set<List<Integer>> set = new HashSet<>();
-        return dfs(set, m-1,n-1);
-    }
-
-    public static int dfs(Set<List<Integer>> set,int m, int n){
-        if(m ==0 || n==0) return 1;
-        if(!set.contains(Arrays.asList(m,n))){
-            set.add(Arrays.asList(m,n));
-            result =dfs(set,m,n-1)+dfs(set,m-1,n);
-        }
-        for (List<Integer> integers : set) {
-            for (Integer integer : integers) {
-                System.out.print("integer = " + integer);
+            if( cnt >=n) {
+                result = mid;
+                target = mid-1;
             }
-            System.out.println();
+            else start = mid+1;
         }
-        System.out.println("=========================");
         return result;
+
     }
+
 
     public static void main(String[] args) {
-        uniquePaths(3,7);
-
-
-
+        int n = 6;
+        int[] times={7,10};
+        System.out.println(solution(n,times));
     }
 
 }
